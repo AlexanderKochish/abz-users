@@ -1,0 +1,25 @@
+.list {
+  max-width: 934px;
+  padding: 0 15px;
+  display: grid;
+  place-items: center;
+  gap: 29px;
+  grid-template-columns: 1fr;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 600px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.scrollTarget {
+  margin-top: 40px;
+}

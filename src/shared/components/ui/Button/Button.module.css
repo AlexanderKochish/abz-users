@@ -1,6 +1,6 @@
 .btn {
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: var(--text-dark);
     width: 100px;
     height: 34px;
     border-radius: 14px;
