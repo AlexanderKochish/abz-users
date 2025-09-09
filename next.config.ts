@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    remotePatterns: [
+      new URL('https://frontend-test-assignment-api.abz.agency/images/**'),
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig
