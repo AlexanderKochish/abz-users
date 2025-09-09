@@ -10,11 +10,24 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  cursor: pointer;
 }
+.card:hover {
+  transform: scale(1.02);
+  transition: all 0.2s linear;
+}
+
 .avatar {
   border-radius: 50%;
   margin-bottom: 20px;
 }
 .name {
   margin-bottom: 20px;
+}
+
+.ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -1,11 +1,10 @@
 import { API_URL } from '@/shared/constants'
 import { UserResponse, UsersResponse } from '../types/types'
-import { ApiErrorResponse } from '@/shared/types/types'
 
 export const fetchUsers = async (
   page: number = 1,
   count: number = 6
-): Promise<UsersResponse | ApiErrorResponse> => {
+): Promise<UsersResponse> => {
   const response = await fetch(`${API_URL}/users?page=${page}&count=${count}`)
 
   if (!response.ok) {

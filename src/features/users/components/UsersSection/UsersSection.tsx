@@ -7,14 +7,12 @@ import UsersClient from '../UsersClient/UsersClient'
 const UsersSection = async () => {
   const users = await fetchUsers()
   return (
-    <section className={s.users}>
-      <div className="container">
-        <div className={s.content}>
-          <Typography variant="h1" as="h2" className={s.title}>
-            Working with GET request
-          </Typography>
-          <UsersClient users={users.users} />
-        </div>
+    <section className={s.users} id="users">
+      <div className={s.content}>
+        <Typography variant="h1" as="h2" className={s.title}>
+          Working with GET request
+        </Typography>
+        <UsersClient users={users.users} />
       </div>
     </section>
   )

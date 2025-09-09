@@ -3,6 +3,7 @@ import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import UsersList from '../UsersList/UsersList'
 import { User } from '../../types/types'
+import CreateUserFormSection from '@/features/create-user-form/components/CreateUserFormSection/CreateUserFormSection'
 
 const queryClient = new QueryClient()
 type Props = {
@@ -12,6 +13,7 @@ const UsersClient = ({ users }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <UsersList users={users} />
+      <CreateUserFormSection />
     </QueryClientProvider>
   )
 }
