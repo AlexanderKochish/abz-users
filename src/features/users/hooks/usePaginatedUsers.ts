@@ -1,14 +1,16 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { fetchUsers } from '../api/fetchUsers'
 import { User, UsersResponse } from '../types/types'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 type Props = {
   initialUsers: User[]
 }
 
 export const usePaginatedUsers = ({ initialUsers }: Props) => {
+  const [isDialogOpen, setDialogOpen] = useState(false)
   const scrollTargetRef = useRef<HTMLDivElement>(null)
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, ...rest } =
     useInfiniteQuery<UsersResponse, Error>({
       queryKey: ['users'],
@@ -50,6 +52,8 @@ export const usePaginatedUsers = ({ initialUsers }: Props) => {
     isFetchingNextPage,
     scrollToNewItems,
     scrollTargetRef,
+    isDialogOpen,
+    setDialogOpen,
     ...rest,
   }
 }

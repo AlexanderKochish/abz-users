@@ -23,3 +23,8 @@ export type UsersResponse = {
   links: Links
   users: User[]
 }
+
+export type UserResponse = {
+  success: boolean
+  user: User
+}
