@@ -1,18 +1,21 @@
 .btn {
-    background-color: var(--primary-color);
-    color: var(--text-dark);
-    width: 100px;
-    height: 34px;
-    border-radius: 14px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background-color: var(--primary-color);
+  color: var(--text-dark);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 34px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-    background-color: var(--button-hover);
+  background-color: var(--button-hover);
 }
 
 .btn:disabled {
-    background-color: var(--button-disabled);
+  background-color: var(--button-disabled);
 }
