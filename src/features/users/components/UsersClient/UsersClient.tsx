@@ -1,9 +1,10 @@
 'use client'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import UsersList from '../UsersList/UsersList'
 import { User } from '../../types/types'
 import CreateUserFormSection from '@/features/create-user-form/components/CreateUserFormSection/CreateUserFormSection'
+import Preloader from '@/shared/components/ui/Preloader/Preloader'
 
 const queryClient = new QueryClient()
 type Props = {
@@ -12,7 +13,9 @@ type Props = {
 const UsersClient = ({ users }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <UsersList users={users} />
+      <Suspense fallback={<Preloader />}>
+        <UsersList users={users} />
+      </Suspense>
       <CreateUserFormSection />
     </QueryClientProvider>
   )
