@@ -14,9 +14,6 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  experimental: {
-    optimizeCss: true,
-  },
   images: {
     remotePatterns: [
       new URL('https://frontend-test-assignment-api.abz.agency/images/**'),
