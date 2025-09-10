@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { Nunito } from 'next/font/google'
+import Head from 'next/head'
 
 const nunito = Nunito({
   variable: '--font-nunito-sans',
@@ -19,6 +20,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunito.variable}`}>
+      <Head>
+        <link
+          rel="preconnect"
+          href="https://frontend-test-assignment-api.abz.agency"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/assets/title.webp"
+          as="image"
+          fetchPriority="high"
+        />
+      </Head>
       <body>
         <main>{children}</main>
       </body>
