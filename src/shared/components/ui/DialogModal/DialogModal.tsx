@@ -21,7 +21,17 @@ const DialogModal = ({ open, onOpenChange, title, description }: Props) => {
           </Dialog.Description>
 
           <Dialog.Close asChild>
-            <button className={s.iconButton} aria-label="Close">
+            <button
+              className={s.iconButton}
+              aria-label="Close"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  onOpenChange(false)
+                }
+              }}
+            >
               ✕
             </button>
           </Dialog.Close>

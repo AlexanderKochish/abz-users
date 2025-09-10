@@ -6,6 +6,7 @@ export const usePosition = () => {
   const { data, ...rest } = useQuery<PositionsResponse, Error>({
     queryKey: ['positions'],
     queryFn: fetchPosition,
+    retry: 1,
   })
 
   return {

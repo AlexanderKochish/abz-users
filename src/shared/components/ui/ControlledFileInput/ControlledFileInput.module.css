@@ -4,10 +4,11 @@
   width: 100%;
   max-width: 410px;
   height: 54px;
-  border: 1px solid #d0d0d0;
+  color: var(--text-dark);
+  border: 1px solid var(--input-border);
   border-radius: 4px;
   overflow: hidden;
-  background: #f8f8f8;
+  background: transparent;
 }
 
 .inputWrapper {
@@ -17,20 +18,25 @@
 
 .uploadButton {
   padding: 8px 16px;
-  border: 1px solid #000;
-  background: #fff;
-  height: 53px;
+  border: 1px solid var(--text-dark);
+  border-radius: 4px;
+  background: var(--text-white);
+  height: 52px;
   cursor: pointer;
 }
 
 .uploadButton:hover {
-  background: #f2f2f2;
+  background: transparent;
+}
+
+.uploadButton:focus {
+  outline: 1px solid var(--secondary-color);
 }
 
 .placeholder {
   flex: 1;
   padding: 8px 12px;
-  color: #8d8d8d;
+  color: var(--input-placeholder);
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;

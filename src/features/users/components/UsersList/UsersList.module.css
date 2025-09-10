@@ -1,25 +1,37 @@
+.usersList {
+  margin-bottom: 100px;
+}
+
 .list {
   max-width: 934px;
-  padding: 0 15px;
   display: grid;
   place-items: center;
-  gap: 29px;
+  gap: 20px;
   grid-template-columns: 1fr;
   margin-bottom: 50px;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 600px) {
   .list {
     grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
   }
 }
 
 @media (min-width: 1024px) {
   .list {
     grid-template-columns: repeat(3, 1fr);
+    gap: 29px;
+    padding: 0;
   }
 }
 
 .scrollTarget {
-  margin-top: 40px;
+  padding-top: 40px;
+}
+
+.scrollTarget {
+  padding-top: 40px;
 }

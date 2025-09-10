@@ -9,12 +9,13 @@ import Preloader from '@/shared/components/ui/Preloader/Preloader'
 const queryClient = new QueryClient()
 type Props = {
   users: User[]
+  initialError?: Error | null
 }
-const UsersClient = ({ users }: Props) => {
+const UsersClient = ({ users, initialError }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Preloader />}>
-        <UsersList users={users} />
+        <UsersList users={users} initialError={initialError} />
       </Suspense>
       <CreateUserFormSection />
     </QueryClientProvider>

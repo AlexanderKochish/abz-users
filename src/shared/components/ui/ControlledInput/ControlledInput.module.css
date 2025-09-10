@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: var(--text-dark);
 }
 
 .input {
@@ -12,7 +13,11 @@
   border-radius: 4px;
   outline: none;
   padding: 14px 16px;
-  color: var(--input-text);
+  color: var(--text-dark);
   font-size: 16px;
-  background-color: transparent;
+  background-color: var(--input-color);
+}
+
+.input:focus {
+  outline: 1px solid var(--secondary-color);
 }

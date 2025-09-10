@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import s from './UsersList.module.css'
 import { User } from '../../types/types'
 import UserCard from '../UserCard/UserCard'
@@ -7,17 +7,18 @@ import Button from '@/shared/components/ui/Button/Button'
 import { usePaginatedUsers } from '../../hooks/usePaginatedUsers'
 import Preloader from '@/shared/components/ui/Preloader/Preloader'
 import DialogModal from '@/shared/components/ui/DialogModal/DialogModal'
-import Typography from '@/shared/components/ui/Typography/Typography'
 import { useQueryParams } from '@/shared/hooks/useQueryParams'
 import UserDetails from '../UserDetails/UserDetails'
 
 import { useUserById } from '../../hooks/useUserById'
+import ErrorState from '@/shared/components/ErrorState/ErrorState'
 
 type Props = {
   users: User[]
+  initialError?: Error | null
 }
 
-const UsersList = ({ users }: Props) => {
+const UsersList = ({ users, initialError }: Props) => {
   const { setQueryParam, getQueryParam } = useQueryParams()
   const urlUserId = Number(getQueryParam('user'))
   const { selectedUser } = useUserById(urlUserId)
@@ -28,10 +29,7 @@ const UsersList = ({ users }: Props) => {
     isFetchingNextPage,
     scrollTargetRef,
     scrollToNewItems,
-    setDialogOpen,
-    isDialogOpen,
     isError,
-    error,
   } = usePaginatedUsers({
     initialUsers: users,
   })
@@ -45,19 +43,18 @@ const UsersList = ({ users }: Props) => {
   }
 
   useEffect(() => {
-    if (isError) {
-      setDialogOpen(true)
-    }
-  }, [isError, setDialogOpen])
-
-  useEffect(() => {
     if (!isFetchingNextPage && data.length > users.length) {
       scrollToNewItems()
     }
   }, [isFetchingNextPage, data.length, users.length, scrollToNewItems])
 
+  if (initialError || isError) {
+    return (
+      <ErrorState title="Failed to get users" initialError={initialError} />
+    )
+  }
   return (
-    <div>
+    <div className={s.usersList}>
       <div className={s.list}>
         {data.map((user) => (
           <UserCard
@@ -83,17 +80,6 @@ const UsersList = ({ users }: Props) => {
         }}
         title="User Details"
         description={selectedUser ? <UserDetails user={selectedUser} /> : null}
-      />
-
-      <DialogModal
-        onOpenChange={setDialogOpen}
-        open={isDialogOpen}
-        title="Error"
-        description={
-          <Typography variant="body" as="p">
-            {error?.message}
-          </Typography>
-        }
       />
     </div>
   )

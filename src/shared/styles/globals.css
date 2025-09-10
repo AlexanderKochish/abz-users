@@ -9,12 +9,16 @@
   --error-color: #cb3d40;
   --input-border: #d0cfcf;
   --input-text: #7e7e7e;
+  --input-color: #ffffff;
   --background-modal: #ffffff;
   --overlay-modal: rgba(0, 0, 0, 0.6);
+  --card-shadow: rgba(0, 0, 0, 0.2);
+  --input-placeholder: #8d8d8d;
 }
 
 body {
   color: var(--text-color);
+  background-color: var(--background-color);
   font-family: 'Nunito';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,5 +43,4 @@ a {
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  background-color: var(--background-color);
 }

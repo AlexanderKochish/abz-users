@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import '@/shared/styles/globals.css'
 import { Nunito } from 'next/font/google'
 
 const nunito = Nunito({
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${nunito.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${nunito.variable}`}>
       <body>
         <main>{children}</main>
       </body>

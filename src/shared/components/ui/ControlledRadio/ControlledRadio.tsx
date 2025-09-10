@@ -16,6 +16,7 @@ const ControlledRadio = ({ control, value, label }: Props) => {
       render={({ field }) => (
         <label className={s.label}>
           <input
+            className={s.input}
             type="radio"
             value={value}
             checked={field.value === value}

@@ -4,14 +4,15 @@ import s from './Tooltip.module.css'
 
 type Props = {
   children: ReactNode
+  title: string
 }
 
-const Tooltip = ({ children }: Props) => {
+const Tooltip = ({ children, title }: Props) => {
   return (
     <RTooltip.Provider>
       <RTooltip.Root>
         <RTooltip.Trigger asChild>
-          <button className={s.iconButton}>.</button>
+          <span className={s.iconButton}>{title}</span>
         </RTooltip.Trigger>
         <RTooltip.Portal>
           <RTooltip.Content className={s.content} sideOffset={5}>

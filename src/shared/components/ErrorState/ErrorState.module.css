@@ -1,0 +1,35 @@
+.errorContainer {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid rgba(196, 49, 49, 0.642);
+  background-color: rgba(196, 49, 49, 0.155);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.errorIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.errorTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+.errorMessage {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-gray);
+  margin-bottom: 24px;
+  max-width: 400px;
+}

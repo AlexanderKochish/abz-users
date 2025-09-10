@@ -4,6 +4,7 @@ import { usePosition } from '../../hooks/usePosition'
 import { Control, FieldErrors } from 'react-hook-form'
 import { createUserSchemaType } from '../../lib/zod/create-user.schema'
 import ControlledRadio from '@/shared/components/ui/ControlledRadio/ControlledRadio'
+import ErrorState from '@/shared/components/ErrorState/ErrorState'
 
 type Props = {
   control: Control<createUserSchemaType>
@@ -11,7 +12,16 @@ type Props = {
 }
 
 const PositionRadioGroup = ({ control, error }: Props) => {
-  const { data: positions } = usePosition()
+  const { data: positions, isError, error: positionError } = usePosition()
+
+  if (isError) {
+    return (
+      <ErrorState
+        initialError={positionError}
+        title="Failed to get positions"
+      />
+    )
+  }
 
   return (
     <div className={s.wrapper}>
