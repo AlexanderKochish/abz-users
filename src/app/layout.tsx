@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import '@/shared/styles/globals.css'
 import { Nunito } from 'next/font/google'
 import Head from 'next/head'
+import QueryProviders from '@/providers/QueryProvider'
 
 const nunito = Nunito({
   variable: '--font-nunito-sans',
@@ -39,7 +40,9 @@ export default function RootLayout({
         />
       </Head>
       <body>
-        <main>{children}</main>
+        <main>
+          <QueryProviders>{children}</QueryProviders>
+        </main>
       </body>
     </html>
   )

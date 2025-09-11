@@ -13,12 +13,7 @@ import UserDetails from '../UserDetails/UserDetails'
 import { useUserById } from '../../hooks/useUserById'
 import ErrorState from '@/shared/components/ErrorState/ErrorState'
 
-type Props = {
-  users: User[]
-  initialError?: Error | null
-}
-
-const UsersList = ({ users, initialError }: Props) => {
+const UsersList = () => {
   const { setQueryParam, getQueryParam } = useQueryParams()
   const urlUserId = Number(getQueryParam('user'))
   const { selectedUser } = useUserById(urlUserId)
@@ -26,13 +21,12 @@ const UsersList = ({ users, initialError }: Props) => {
     data,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
     scrollTargetRef,
+    isFetchingNextPage,
     scrollToNewItems,
+    error,
     isError,
-  } = usePaginatedUsers({
-    initialUsers: users,
-  })
+  } = usePaginatedUsers()
 
   const handleUserClick = (user: User) => {
     setQueryParam('user', user.id.toString())
@@ -42,17 +36,10 @@ const UsersList = ({ users, initialError }: Props) => {
     setQueryParam('user', null)
   }
 
-  useEffect(() => {
-    if (!isFetchingNextPage && data.length > users.length) {
-      scrollToNewItems()
-    }
-  }, [isFetchingNextPage, data.length, users.length, scrollToNewItems])
-
-  if (initialError || isError) {
-    return (
-      <ErrorState title="Failed to get users" initialError={initialError} />
-    )
+  if (isError) {
+    return <ErrorState title="Failed to get users" initialError={error} />
   }
+
   return (
     <div className={s.usersList}>
       <div className={s.list}>
@@ -67,7 +54,13 @@ const UsersList = ({ users, initialError }: Props) => {
 
       {isFetchingNextPage && <Preloader />}
 
-      <Button onClick={() => fetchNextPage()} disabled={!hasNextPage}>
+      <Button
+        onClick={async () => {
+          await fetchNextPage()
+          scrollToNewItems()
+        }}
+        disabled={!hasNextPage}
+      >
         Show more
       </Button>
 

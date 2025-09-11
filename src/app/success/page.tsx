@@ -3,6 +3,10 @@ import Image from 'next/image'
 import React from 'react'
 import successImage from '../../../public/success-image.svg'
 import s from './page.module.css'
+import Link from 'next/link'
+import ArrowLeft from '@/shared/components/ui/ArrowLeft/ArrowLeft'
+
+export const dynamic = 'error'
 
 const SuccessPage = () => {
   return (
@@ -20,6 +24,10 @@ const SuccessPage = () => {
               height={290}
               alt="success image"
             />
+            <Link href="/" className={s.backButton}>
+              <ArrowLeft size={18} />
+              <span>Back to home</span>
+            </Link>
           </div>
           <hr />
           <footer className={s.successFooter}>

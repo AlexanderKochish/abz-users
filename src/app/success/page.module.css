@@ -16,3 +16,21 @@
 .successFooter {
   padding: 17px 2px;
 }
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 10px 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.backButton:hover {
+  background: #e5e5e5;
+}

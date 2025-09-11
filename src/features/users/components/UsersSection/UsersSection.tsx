@@ -1,25 +1,24 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import s from './UsersSection.module.css'
 import Typography from '@/shared/components/ui/Typography/Typography'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query'
 import { fetchUsers } from '../../api/fetchUsers'
-import UsersClient from '../UsersClient/UsersClient'
-import { User } from '../../types/types'
+import Preloader from '@/shared/components/ui/Preloader/Preloader'
+import UsersList from '../UsersList/UsersList'
+import CreateUserFormSection from '@/features/create-user-form/components/CreateUserFormSection/CreateUserFormSection'
 
 const UsersSection = async () => {
-  let initialUsers: User[] = []
-  let error: Error | null = null
+  const queryClient = new QueryClient()
 
-  try {
-    const response = await fetchUsers()
-    if (response.success) {
-      initialUsers = response.users
-    } else {
-      error = new Error('API returned unsuccessful response')
-    }
-  } catch (err) {
-    error = err instanceof Error ? err : new Error('Unknown error')
-  }
-
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ['users'],
+    queryFn: ({ pageParam = 1 }) => fetchUsers(pageParam),
+    initialPageParam: 1,
+  })
   return (
     <section className={s.users} id="users">
       <div className={s.content}>
@@ -27,7 +26,12 @@ const UsersSection = async () => {
           Working with GET request
         </Typography>
 
-        <UsersClient users={initialUsers} initialError={error} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Suspense fallback={<Preloader />}>
+            <UsersList />
+          </Suspense>
+          <CreateUserFormSection />
+        </HydrationBoundary>
       </div>
     </section>
   )
